@@ -60,7 +60,7 @@
           const titleLine = document.getElementsByTagName('h1')[0];
           titleLine.innerText = "This is the new title of the page";
         };
-        changeTitle();
+        //window.onload = changeTitle();
   
         /* EXERCISE 2
          Write a function for changing the class of the title of the page in "myHeading".
@@ -70,77 +70,108 @@
           const titleLine = document.getElementsByTagName('h1')[0];
           titleLine.classList.add("myHeading");
         };
-        addClassToTitle();
+        //window.onload = addClassToTitle();
   
         /* EXERCISE 3
          Write a function for changing the text of only the p which are children of a div.
         */
   
         const changePcontent = function () {
-          const divList = document.getElementsByTagName('div');
+          const divList = document.querySelectorAll("div p");
           for(let i=0; i<divList.length; i++){
-            if(divList[i].childNodes.getElementsByTagName('p').length > 0){
-              pList = divList[i].childNodes.getElementsByTagName('p');
-              for(let j=0; j<pList.length; j++){
-                pList[j].innerText = "modified";
-              }
-            }
+            divList[i].innerText = "modified";
           }          
         };
-        changePcontent();
+        //window.onload = changePcontent();
   
         /* EXERCISE 4
          Write a function for changing the href property of every link to https://www.google.com
         */
   
         const changeUrls = function () {
-          const listOfLinks = document.querySelector('a');
+          const listOfLinks = document.querySelectorAll("a");
           for(let i=0; i<listOfLinks.length; i++){
             listOfLinks[i].href = "https://www.google.com";
           }
         };
-        changeUrls();
-        document.querySelector('a')[0].href = "https://www.google.com";
+        //window.onload = changeUrls();
+        
   
         /* EXERCISE 5
          Write a function for adding a new list item in the second unordered list.
         */
   
         const addToTheSecond = function (content) {
-          //
+          const secondList = document.getElementById("secondList");
+          secondList.append("4th");          
         };
+        //window.onload = addToTheSecond();
   
         /* EXERCISE 6
          Write a function for adding a second paragraph to the first div.
         */
   
         const addParagraph = function (content) {
-          //
+          const initialP = document.getElementsByTagName("div")[0];
+          initialP.insertAdjacentHTML('beforeend',"<p> paragraph 2 </p>");
         };
+        //window.onload = addParagraph();
   
         /* EXERCISE 7
          Write a function for making the first unordered list disappear.
         */
   
         const firstUlDisappear = function () {
-          //
+          const list01 = document.getElementById("firstList");
+          list01.style.visibility = "hidden";
         };
+        //window.onload = firstUlDisappear();
   
         /* EXERCISE 8
          Write a function for making the background of every unordered list green.
         */
   
         const paintItGreen = function () {
-          //
+          const listOfLists = document.querySelectorAll("ul");
+          for(let i=0;i<listOfLists.length;i++){
+            listOfLists[i].style.backgroundColor = "green";
+          }          
         };
-  
+        //window.onload = paintItGreen();
+        
+        const oneThroughEight = function () {
+          setTimeout(() => {  changeTitle(); }, 1000);
+          setTimeout(() => {  addClassToTitle(); }, 2000);
+          setTimeout(() => {  changePcontent(); }, 3000);
+          setTimeout(() => {  changeUrls(); }, 4000);
+          setTimeout(() => {  addToTheSecond(); }, 5000);
+          setTimeout(() => {  addParagraph(); }, 6000);
+          setTimeout(() => {  firstUlDisappear(); }, 7000);
+          setTimeout(() => {  paintItGreen(); }, 8000);
+        }
+        window.onload = oneThroughEight();
+        
+        
+        
+        
         /* EXERCISE 9
          Make the heading of the page change color every time the user clicks on it.
-        */
-  
+        */  
+        const randomColorVal = function () {            
+            return Math.floor(Math.random() * 255);
+        }
+        const randomColorChange = function (e) {
+          
+          e.style.backgroundColor = `rgb(${randomColorVal()},${randomColorVal()},${randomColorVal()})`; 
+
+        }
         const makeItClickable = function () {
-          //
+          const header = document.getElementsByTagName("div")[0];
+          header.addEventListener("onclick", randomColorChange(header));
+          //randomColorChange(header);
+          
         };
+        window.onload = makeItClickable();
   
         /* EXERCISE 10
          Change the footer text with something else when the user clicks on it.
